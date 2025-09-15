@@ -19,6 +19,201 @@
             overflow-x: hidden;
         }
 
+        /* Barra de progreso */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #b388ff);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Barra de navegación con menú hamburguesa */
+        .navbar {
+            position: fixed;
+            top: 4px;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background-color: rgba(10, 25, 47, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(10, 25, 47, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #64ffda, #b388ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Menú desplegable */
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px 20px;
+            transition: right 0.3s ease;
+            z-index: 998;
+            overflow-y: auto;
+        }
+
+        .menu.active {
+            right: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 15px;
+        }
+
+        .menu-link {
+            display: block;
+            color: #8892b0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-link:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+        }
+
+        .menu-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .submenu {
+            margin-left: 20px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .submenu-link {
+            display: block;
+            color: #8892b0;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .submenu-link:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+        }
+
+        .social-submenu {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .social-submenu a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-submenu a:hover {
+            background: linear-gradient(135deg, #64ffda, #b388ff);
+            color: #0a192f;
+            transform: translateY(-3px);
+        }
+
+        /* Overlay para cerrar el menú */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 997;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.9)), url('./images/hero.jpg') center/cover no-repeat;
@@ -28,6 +223,7 @@
             text-align: center;
             flex-direction: column;
             position: relative;
+            background-attachment: fixed;
         }
 
         .hero h1 {
@@ -36,11 +232,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
         }
 
         .hero p {
             font-size: 1.5rem;
             color: #8892b0;
+            animation: fadeInUp 1s ease 0.3s;
+            animation-fill-mode: both;
         }
 
         .hero-controls {
@@ -65,11 +264,33 @@
             background: #64ffda;
         }
 
+        /* Secciones */
         .section {
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+        }
+
+        .section.visible {
+            opacity: 1;
+        }
+
+        .section-left {
+            transform: translateX(-100px);
+        }
+
+        .section-left.visible {
+            transform: translateX(0);
+        }
+
+        .section-right {
+            transform: translateX(100px);
+        }
+
+        .section-right.visible {
+            transform: translateX(0);
         }
 
         .section:hover {
@@ -94,10 +315,11 @@
         .carousel {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 500px;
             overflow: hidden;
             border-radius: 15px;
             margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .carousel img {
@@ -113,6 +335,11 @@
             opacity: 1;
         }
 
+        .carousel img:hover {
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+        }
+
         .map-btn {
             display: inline-block;
             padding: 0.8rem 1.5rem;
@@ -122,10 +349,28 @@
             border-radius: 50px;
             font-weight: bold;
             transition: transform 0.3s ease;
+            margin-right: 1rem;
         }
 
         .map-btn:hover {
             transform: scale(1.1);
+        }
+
+        .info-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: #64ffda;
+            text-decoration: none;
+            border: 2px solid #64ffda;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .info-btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: scale(1.05);
         }
 
         .services {
@@ -167,9 +412,175 @@
         .dot.active {
             background: #64ffda;
         }
+
+        /* Desplegable de información */
+        .info-dropdown {
+            margin-top: 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            background-color: rgba(179, 136, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .info-dropdown.open {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .info-dropdown h3 {
+            color: #b388ff;
+            margin-bottom: 1rem;
+        }
+
+        .info-dropdown p {
+            color: #8892b0;
+            margin-bottom: 1rem;
+        }
+
+        .info-dropdown ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .info-dropdown li {
+            color: #8892b0;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .info-dropdown li:before {
+            content: "•";
+            color: #64ffda;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(10, 25, 47, 0.8);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #64ffda, #b388ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #64ffda, #b388ff);
+            color: #0a192f;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Barra de progreso -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Barra de navegación con menú hamburguesa -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">Valle Viejo Turismo</div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Menú desplegable -->
+    <div class="menu" id="menu">
+        <div class="menu-item">
+            <a href="#" class="menu-link" id="touristPlacesLink">
+                <i class="fas fa-map-marker-alt"></i> Lugares turísticos de interés
+            </a>
+            <div class="submenu" id="touristPlacesSubmenu">
+                <a href="#portezuelo" class="submenu-link">Cuesta del Portezuelo</a>
+                <a href="#palmeras" class="submenu-link">Patio Palmeras</a>
+                <a href="#aborigen" class="submenu-link">Plaza el Aborigen</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <a href="#" class="menu-link" id="gastronomyLink">
+                <i class="fas fa-utensils"></i> Gastronomía local
+            </a>
+            <div class="submenu" id="gastronomySubmenu">
+                <a href="#" class="submenu-link">Próximamente</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <a href="#" class="menu-link" id="socialMediaLink">
+                <i class="fas fa-share-alt"></i> Redes sociales
+            </a>
+            <div class="social-submenu" id="socialMediaSubmenu">
+                <a href="https://www.instagram.com/turismo.valleviejo?igsh=MXVodjZodmtrbmljbA==" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.instagram.com/valleviejociudad?igsh=NXhkdWppMmo5YjBy" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <a href="#contacto" class="menu-link">
+                <i class="fas fa-envelope"></i> Contacto
+            </a>
+        </div>
+    </div>
+
+    <!-- Overlay para cerrar el menú -->
+    <div class="overlay" id="overlay"></div>
 
     <!-- Hero Section -->
     <div class="hero" id="hero">
@@ -182,7 +593,7 @@
     </div>
 
     <!-- Cuesta del Portezuelo -->
-    <div class="section">
+    <div class="section section-left" id="portezuelo">
         <h2>Cuesta del Portezuelo</h2>
         <p>Un paso montañoso lleno de historia y belleza natural. Ideal para aventureros y amantes del paisaje.</p>
         
@@ -198,6 +609,21 @@
         <a href="https://www.google.com/maps/search/?api=1&query=Cuesta+del+Portezuelo,+Catamarca" target="_blank" class="map-btn">
             <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
         </a>
+        <a href="#" class="info-btn" onclick="toggleInfo('info1')">Conocer más</a>
+
+        <div class="info-dropdown" id="info1">
+            <h3>Historia y Curiosidades</h3>
+            <p>La Cuesta del Portezuelo es un paso montañoso que ha sido utilizado desde tiempos precolombinos como ruta de conexión entre diferentes valles. Durante la época colonial, fue un camino fundamental para el transporte de bienes entre Catamarca y otras provincias.</p>
+            <h3>Mejor época para visitar</h3>
+            <p>La primavera y el otoño son las estaciones ideales para visitar, ya que las temperaturas son moderadas y el paisaje se muestra en todo su esplendor.</p>
+            <h3>Actividades recomendadas</h3>
+            <ul>
+                <li>Trekking y senderismo</li>
+                <li>Fotografía de paisaje</li>
+                <li>Observación de flora y fauna autóctona</li>
+                <li>Visita a la hostería para disfrutar de la gastronomía local</li>
+            </ul>
+        </div>
 
         <div class="services">
             <ul>
@@ -208,50 +634,38 @@
         </div>
     </div>
 
-    <!-- Dique Las Pirquitas -->
-    <div class="section">
-        <h2>Dique Las Pirquitas</h2>
-        <p>Un espejo de agua rodeado de serranías, perfecto para la pesca deportiva y el camping tranquilo.</p>
+    <!-- Patio Palmeras -->
+    <div class="section section-right" id="palmeras">
+        <h2>Patio Palmeras</h2>
+        <p>Un espacio natural único en Valle Viejo, donde la vegetación exuberante y las palmeras crean un ambiente paradisíaco. Ideal para relajarse y conectar con la naturaleza.</p>
         
         <div class="carousel" id="carousel2">
-            <img src="./images/pirquitas1.jpg" class="active" alt="Dique Las Pirquitas">
-            <img src="./images/pirquitas2.jpg" alt="Pesca en el dique">
+            <img src="./images/palmeras1.jpg" class="active" alt="Patio Palmeras">
+            <img src="./images/palmeras2.jpg" alt="Vista panorámica de Patio Palmeras">
             <div class="carousel-controls">
                 <span class="dot active" onclick="currentSlide(2, 0)"></span>
                 <span class="dot" onclick="currentSlide(2, 1)"></span>
             </div>
         </div>
 
-        <a href="https://www.google.com/maps/search/?api=1&query=Dique+Las+Pirquitas,+Catamarca" target="_blank" class="map-btn">
-            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
-        </a>
-
-        <div class="services">
-            <ul>
-                <li><i class="fas fa-campground"></i> Camping</li>
-                <li><i class="fas fa-ship"></i> Alquiler de botes</li>
-                <li><i class="fas fa-tree"></i> Áreas de pícnic</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Patio Palmeras -->
-    <div class="section">
-        <h2>Patio Palmeras</h2>
-        <p>Un espacio natural único en Valle Viejo, donde la vegetación exuberante y las palmeras crean un ambiente paradisíaco. Ideal para relajarse y conectar con la naturaleza.</p>
-        
-        <div class="carousel" id="carousel3">
-            <img src="./images/palmeras1.jpg" class="active" alt="Patio Palmeras">
-            <img src="./images/palmeras2.jpg" alt="Vista panorámica de Patio Palmeras">
-            <div class="carousel-controls">
-                <span class="dot active" onclick="currentSlide(3, 0)"></span>
-                <span class="dot" onclick="currentSlide(3, 1)"></span>
-            </div>
-        </div>
-
         <a href="https://www.google.com/maps/search/?api=1&query=Patio+Palmeras,+Valle+Viejo,+Catamarca" target="_blank" class="map-btn">
             <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
         </a>
+        <a href="#" class="info-btn" onclick="toggleInfo('info2')">Conocer más</a>
+
+        <div class="info-dropdown" id="info2">
+            <h3>Historia y Curiosidades</h3>
+            <p>Patio Palmeras es un oasis natural que fue desarrollado hace más de 30 años por una familia local que quería crear un espacio de conexión con la naturaleza. Con el tiempo, se ha convertido en uno de los lugares más visitados de Valle Viejo.</p>
+            <h3>Mejor época para visitar</h3>
+            <p>Cualquier época del año es buena para visitar, pero durante el verano las palmeras ofrecen un refrescante sombreado que hace la experiencia especialmente agradable.</p>
+            <h3>Actividades recomendadas</h3>
+            <ul>
+                <li>Paseos tranquilos entre las palmeras</li>
+                <li>Fotografía de naturaleza</li>
+                <li>Picnic en zonas habilitadas</li>
+                <li>Yoga y meditación en un entorno natural</li>
+            </ul>
+        </div>
 
         <div class="services">
             <ul>
@@ -263,22 +677,37 @@
     </div>
 
     <!-- Plaza el Aborigen -->
-    <div class="section">
+    <div class="section section-left" id="aborigen">
         <h2>Plaza el Aborigen</h2>
         <p>Un espacio emblemático que rinde homenaje a las culturas originarias de la región. Ideal para disfrutar de momentos de esparcimiento y conexión con la historia local.</p>
         
-        <div class="carousel" id="carousel4">
+        <div class="carousel" id="carousel3">
             <img src="./images/aborigen1.jpg" class="active" alt="Plaza el Aborigen">
             <img src="./images/aborigen2.jpg" alt="Monumento en Plaza el Aborigen">
             <div class="carousel-controls">
-                <span class="dot active" onclick="currentSlide(4, 0)"></span>
-                <span class="dot" onclick="currentSlide(4, 1)"></span>
+                <span class="dot active" onclick="currentSlide(3, 0)"></span>
+                <span class="dot" onclick="currentSlide(3, 1)"></span>
             </div>
         </div>
 
         <a href="https://www.google.com/maps/search/?api=1&query=Plaza+el+Aborigen,+Valle+Viejo,+Catamarca" target="_blank" class="map-btn">
             <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
         </a>
+        <a href="#" class="info-btn" onclick="toggleInfo('info3')">Conocer más</a>
+
+        <div class="info-dropdown" id="info3">
+            <h3>Historia y Curiosidades</h3>
+            <p>Plaza el Aborigen fue inaugurada en 1995 como un homenaje a las culturas originarias que habitaban la región antes de la llegada de los colonizadores. El monumento central representa la unión de las diferentes etnias que poblaron el territorio.</p>
+            <h3>Mejor época para visitar</h3>
+            <p>La plaza es hermosa durante todo el año, pero durante las festividades patrias y en el mes de la historia (mayo) se realizan eventos especiales que vale la pena disfrutar.</p>
+            <h3>Actividades recomendadas</h3>
+            <ul>
+                <li>Visita guiada para conocer la historia del monumento</li>
+                <li>Asistencia a eventos culturales que se realizan en la plaza</li>
+                <li>Paseos familiares y recreativos</li>
+                <li>Fotografía del monumento y los símbolos representativos</li>
+            </ul>
+        </div>
 
         <div class="services">
             <ul>
@@ -288,6 +717,22 @@
             </ul>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <h3>Síguenos en nuestras redes sociales</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/turismo.valleviejo?igsh=MXVodjZodmtrbmljbA==" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.instagram.com/valleviejociudad?igsh=NXhkdWppMmo5YjBy" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="copyright">© 2023 Valle Viejo Turismo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <script>
         // Array de imágenes para el hero
@@ -336,7 +781,7 @@
 
         // Auto-slide functionality para los carruseles
         setInterval(() => {
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 3; i++) {
                 const carouselElement = document.getElementById(`carousel${i}`);
                 const activeImg = carouselElement.querySelector('.active');
                 const images = Array.from(carouselElement.querySelectorAll('img'));
@@ -345,6 +790,137 @@
                 currentSlide(i, nextIndex);
             }
         }, 5000);
+
+        // Función para alternar el desplegable de información
+        function toggleInfo(infoId) {
+            const infoDropdown = document.getElementById(infoId);
+            infoDropdown.classList.toggle('open');
+            
+            // Prevenir el comportamiento por defecto del enlace
+            event.preventDefault();
+        }
+
+        // Barra de progreso
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Cambio de apariencia de la barra de navegación al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animación de las secciones al hacer scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Funcionalidad del menú hamburguesa
+        const menuToggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('menu');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Funcionalidad de los submenús
+        const touristPlacesLink = document.getElementById('touristPlacesLink');
+        const touristPlacesSubmenu = document.getElementById('touristPlacesSubmenu');
+        const gastronomyLink = document.getElementById('gastronomyLink');
+        const gastronomySubmenu = document.getElementById('gastronomySubmenu');
+        const socialMediaLink = document.getElementById('socialMediaLink');
+        const socialMediaSubmenu = document.getElementById('socialMediaSubmenu');
+
+        touristPlacesLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            touristPlacesSubmenu.classList.toggle('active');
+            gastronomySubmenu.classList.remove('active');
+        });
+
+        gastronomyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            gastronomySubmenu.classList.toggle('active');
+            touristPlacesSubmenu.classList.remove('active');
+        });
+
+        socialMediaLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            socialMediaSubmenu.style.display = socialMediaSubmenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Si es un enlace a una sección (no a un submenú)
+                if (this.getAttribute('href') !== '#' && !this.classList.contains('menu-link')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Cerrar el menú
+                        menuToggle.classList.remove('active');
+                        menu.classList.remove('active');
+                        overlay.classList.remove('active');
+                        
+                        // Desplazamiento suave
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Smooth scrolling para los enlaces del submenú
+        document.querySelectorAll('.submenu-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Cerrar el menú
+                    menuToggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    
+                    // Desplazamiento suave
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 
 </body>
