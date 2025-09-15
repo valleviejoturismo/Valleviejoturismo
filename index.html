@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valle Viejo - Turismo Futurista</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.9)), url('https://source.unsplash.com/1600x900/?catamarca,valle-viejo') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            background: linear-gradient(90deg, #64ffda, #b388ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #8892b0;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #64ffda, #b388ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: #8892b0;
+            margin-bottom: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .carousel img.active {
+            opacity: 1;
+        }
+
+        .map-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(90deg, #64ffda, #b388ff);
+            color: #0a192f;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .map-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .services {
+            margin-top: 2rem;
+        }
+
+        .services ul {
+            list-style-type: none;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .services li {
+            background: rgba(179, 136, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: #64ffda;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Descubre el Futuro del Turismo en Catamarca</h1>
+        <p>Valle Viejo: Naturaleza, Historia y Tecnología</p>
+    </div>
+
+    <!-- Cuesta del Portezuelo -->
+    <div class="section">
+        <h2>Cuesta del Portezuelo</h2>
+        <p>Un paso montañoso lleno de historia y belleza natural. Ideal para aventureros y amantes del paisaje.</p>
+        
+        <div class="carousel" id="carousel1">
+            <img src="https://source.unsplash.com/800x400/?cuesta,portezuelo,catamarca" class="active" alt="Cuesta del Portezuelo">
+            <img src="https://source.unsplash.com/800x400/?mountains,catamarca" alt="Montañas de Catamarca">
+            <img src="https://source.unsplash.com/800x400/?hosteria,catamarca" alt="Hostería Cuesta del Portezuelo">
+            <div class="carousel-controls">
+                <span class="dot active" onclick="currentSlide(1, 0)"></span>
+                <span class="dot" onclick="currentSlide(1, 1)"></span>
+                <span class="dot" onclick="currentSlide(1, 2)"></span>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Cuesta+del+Portezuelo,+Catamarca" target="_blank" class="map-btn">
+            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
+        </a>
+
+        <div class="services">
+            <ul>
+                <li><i class="fas fa-bed"></i> Hostería Cuesta del Portezuelo</li>
+                <li><i class="fas fa-utensils"></i> Restaurantes cercanos</li>
+                <li><i class="fas fa-user-tie"></i> Guías turísticos</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Dique Las Pirquitas -->
+    <div class="section">
+        <h2>Dique Las Pirquitas</h2>
+        <p>Un espejo de agua rodeado de serranías, perfecto para la pesca deportiva y el camping tranquilo.</p>
+        
+        <div class="carousel" id="carousel2">
+            <img src="https://source.unsplash.com/800x400/?lake,catamarca" class="active" alt="Dique Las Pirquitas">
+            <img src="https://source.unsplash.com/800x400/?fishing,catamarca" alt="Pesca en el dique">
+            <img src="https://source.unsplash.com/800x400/?camping,catamarca" alt="Camping">
+            <div class="carousel-controls">
+                <span class="dot active" onclick="currentSlide(2, 0)"></span>
+                <span class="dot" onclick="currentSlide(2, 1)"></span>
+                <span class="dot" onclick="currentSlide(2, 2)"></span>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Dique+Las+Pirquitas,+Catamarca" target="_blank" class="map-btn">
+            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
+        </a>
+
+        <div class="services">
+            <ul>
+                <li><i class="fas fa-campground"></i> Camping</li>
+                <li><i class="fas fa-ship"></i> Alquiler de botes</li>
+                <li><i class="fas fa-tree"></i> Áreas de pícnic</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Parque Provincial de las Cuevas -->
+    <div class="section">
+        <h2>Parque Provincial de las Cuevas</h2>
+        <p>Reserva natural con formaciones geológicas únicas y senderos para explorar.</p>
+        
+        <div class="carousel" id="carousel3">
+            <img src="https://source.unsplash.com/800x400/?caves,catamarca" class="active" alt="Parque Provincial de las Cuevas">
+            <img src="https://source.unsplash.com/800x400/?hiking,catamarca" alt="Senderismo">
+            <img src="https://source.unsplash.com/800x400/?rocks,catamarca" alt="Formaciones rocosas">
+            <div class="carousel-controls">
+                <span class="dot active" onclick="currentSlide(3, 0)"></span>
+                <span class="dot" onclick="currentSlide(3, 1)"></span>
+                <span class="dot" onclick="currentSlide(3, 2)"></span>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Parque+Provincial+de+las+Cuevas,+Catamarca" target="_blank" class="map-btn">
+            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
+        </a>
+
+        <div class="services">
+            <ul>
+                <li><i class="fas fa-hiking"></i> Visitas guiadas</li>
+                <li><i class="fas fa-route"></i> Senderos señalizados</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Iglesia San Francisco -->
+    <div class="section">
+        <h2>Iglesia San Francisco (Valle Viejo)</h2>
+        <p>Joyita del patrimonio histórico religioso de la región, con más de 200 años de historia.</p>
+        
+        <div class="carousel" id="carousel4">
+            <img src="https://source.unsplash.com/800x400/?church,catamarca" class="active" alt="Iglesia San Francisco">
+            <img src="https://source.unsplash.com/800x400/?colonial,church" alt="Arquitectura colonial">
+            <img src="https://source.unsplash.com/800x400/?historical,building" alt="Detalles históricos">
+            <div class="carousel-controls">
+                <span class="dot active" onclick="currentSlide(4, 0)"></span>
+                <span class="dot" onclick="currentSlide(4, 1)"></span>
+                <span class="dot" onclick="currentSlide(4, 2)"></span>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Iglesia+San+Francisco,+Valle+Viejo,+Catamarca" target="_blank" class="map-btn">
+            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
+        </a>
+
+        <div class="services">
+            <ul>
+                <li><i class="fas fa-pray"></i> Visitas guiadas</li>
+                <li><i class="fas fa-calendar-alt"></i> Eventos religiosos y culturales</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function currentSlide(carousel, slideIndex) {
+            const carouselElement = document.getElementById(`carousel${carousel}`);
+            const images = carouselElement.querySelectorAll('img');
+            const dots = carouselElement.querySelectorAll('.dot');
+
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            images[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        // Auto-slide functionality
+        setInterval(() => {
+            for (let i = 1; i <= 4; i++) {
+                const carouselElement = document.getElementById(`carousel${i}`);
+                const activeImg = carouselElement.querySelector('.active');
+                const images = Array.from(carouselElement.querySelectorAll('img'));
+                const activeIndex = images.indexOf(activeImg);
+                const nextIndex = (activeIndex + 1) % images.length;
+                currentSlide(i, nextIndex);
+            }
+        }, 5000);
+    </script>
+
+</body>
+</html>
