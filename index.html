@@ -27,6 +27,7 @@
             align-items: center;
             text-align: center;
             flex-direction: column;
+            position: relative;
         }
 
         .hero h1 {
@@ -40,6 +41,28 @@
         .hero p {
             font-size: 1.5rem;
             color: #8892b0;
+        }
+
+        .hero-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .hero-dot.active {
+            background: #64ffda;
         }
 
         .section {
@@ -149,9 +172,13 @@
 <body>
 
     <!-- Hero Section -->
-    <div class="hero">
+    <div class="hero" id="hero">
         <h1>Descubre el Futuro del Turismo en Catamarca</h1>
         <p>Valle Viejo: Naturaleza, Historia y Tecnología</p>
+        <div class="hero-controls">
+            <span class="hero-dot active" onclick="changeHeroImage(0)"></span>
+            <span class="hero-dot" onclick="changeHeroImage(1)"></span>
+        </div>
     </div>
 
     <!-- Cuesta del Portezuelo -->
@@ -242,8 +269,10 @@
         
         <div class="carousel" id="carousel4">
             <img src="./images/aborigen1.jpg" class="active" alt="Plaza el Aborigen">
+            <img src="./images/aborigen2.jpg" alt="Monumento en Plaza el Aborigen">
             <div class="carousel-controls">
                 <span class="dot active" onclick="currentSlide(4, 0)"></span>
+                <span class="dot" onclick="currentSlide(4, 1)"></span>
             </div>
         </div>
 
@@ -261,6 +290,38 @@
     </div>
 
     <script>
+        // Array de imágenes para el hero
+        const heroImages = [
+            './images/hero.jpg',
+            './images/hero2.jpg'
+        ];
+        
+        let currentHeroIndex = 0;
+        
+        // Función para cambiar la imagen del hero
+        function changeHeroImage(index) {
+            const hero = document.getElementById('hero');
+            hero.style.backgroundImage = `linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.9)), url('${heroImages[index]}')`;
+            
+            // Actualizar los indicadores
+            document.querySelectorAll('.hero-dot').forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            currentHeroIndex = index;
+        }
+        
+        // Auto-cambio de imagen del hero cada 8 segundos
+        setInterval(() => {
+            const nextIndex = (currentHeroIndex + 1) % heroImages.length;
+            changeHeroImage(nextIndex);
+        }, 8000);
+        
+        // Función para cambiar las imágenes de los carruseles
         function currentSlide(carousel, slideIndex) {
             const carouselElement = document.getElementById(`carousel${carousel}`);
             const images = carouselElement.querySelectorAll('img');
@@ -273,7 +334,7 @@
             dots[slideIndex].classList.add('active');
         }
 
-        // Auto-slide functionality
+        // Auto-slide functionality para los carruseles
         setInterval(() => {
             for (let i = 1; i <= 4; i++) {
                 const carouselElement = document.getElementById(`carousel${i}`);
