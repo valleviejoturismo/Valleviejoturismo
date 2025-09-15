@@ -426,6 +426,7 @@
         .info-dropdown.open {
             max-height: 500px;
             padding: 1.5rem;
+            overflow-y: auto;
         }
 
         .info-dropdown h3 {
@@ -455,6 +456,20 @@
             color: #64ffda;
             position: absolute;
             left: 0;
+        }
+
+        /* Mapa incrustado */
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
         }
 
         /* Footer */
@@ -606,9 +621,6 @@
             </div>
         </div>
 
-        <a href="https://www.google.com/maps/search/?api=1&query=Cuesta+del+Portezuelo,+Catamarca" target="_blank" class="map-btn">
-            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
-        </a>
         <a href="#" class="info-btn" onclick="toggleInfo('info1')">Conocer más</a>
 
         <div class="info-dropdown" id="info1">
@@ -623,6 +635,11 @@
                 <li>Observación de flora y fauna autóctona</li>
                 <li>Visita a la hostería para disfrutar de la gastronomía local</li>
             </ul>
+            
+            <h3>Ubicación</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1234567890123!2d-65.7890123456789!3d-28.46789012345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9424291e23456789%3A0x1234567890abcdef!2sCuesta+del+Portezuelo%2C+Catamarca!5e0!3m2!1ses!2sar!4v1234567890123" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
 
         <div class="services">
@@ -637,7 +654,7 @@
     <!-- Patio Palmeras -->
     <div class="section section-right" id="palmeras">
         <h2>Patio Palmeras</h2>
-        <p>Un espacio natural único en Valle Viejo, donde la vegetación exuberante y las palmeras crean un ambiente paradisíaco. Ideal para relajarse y conectar con la naturaleza.</p>
+        <p>Patio Palmeras es un complejo comercial integral en Valle Viejo que combina naturaleza con comodidades urbanas. Este espacio único cuenta con una amplia variedad de servicios que lo convierten en un punto de encuentro ideal para locales y visitantes.</p>
         
         <div class="carousel" id="carousel2">
             <img src="./images/palmeras1.jpg" class="active" alt="Patio Palmeras">
@@ -648,30 +665,38 @@
             </div>
         </div>
 
-        <a href="https://www.google.com/maps/search/?api=1&query=Patio+Palmeras,+Valle+Viejo,+Catamarca" target="_blank" class="map-btn">
-            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
-        </a>
         <a href="#" class="info-btn" onclick="toggleInfo('info2')">Conocer más</a>
 
         <div class="info-dropdown" id="info2">
-            <h3>Historia y Curiosidades</h3>
-            <p>Patio Palmeras es un oasis natural que fue desarrollado hace más de 30 años por una familia local que quería crear un espacio de conexión con la naturaleza. Con el tiempo, se ha convertido en uno de los lugares más visitados de Valle Viejo.</p>
-            <h3>Mejor época para visitar</h3>
-            <p>Cualquier época del año es buena para visitar, pero durante el verano las palmeras ofrecen un refrescante sombreado que hace la experiencia especialmente agradable.</p>
-            <h3>Actividades recomendadas</h3>
+            <h3>Descripción completa</h3>
+            <p>Patio Palmeras es un complejo comercial integral en Valle Viejo que combina naturaleza con comodidades urbanas. Este espacio único cuenta con una amplia variedad de servicios que lo convierten en un punto de encuentro ideal para locales y visitantes. Disfruta de sus dos heladerías, el reconocido café Havana, y diversos kioscos para refrescarte.</p>
+            <p>El complejo alberga 12 locales de ropa, peluquerías, zapaterías y un gimnasio en el piso superior. Para mayor comodidad, cuenta con un supermercado interno y amplio estacionamiento propio, haciendo de Patio Palmeras un lugar completo para satisfacer todas tus necesidades en un ambiente agradable y accesible.</p>
+            
+            <h3>Servicios disponibles</h3>
             <ul>
-                <li>Paseos tranquilos entre las palmeras</li>
-                <li>Fotografía de naturaleza</li>
-                <li>Picnic en zonas habilitadas</li>
-                <li>Yoga y meditación en un entorno natural</li>
+                <li>Two heladerías con variedades de sabores</li>
+                <li>Café Havana - reconocido establecimiento de café</li>
+                <li>Kioscos con bebidas y snacks</li>
+                <li>12 locales de ropa con diferentes estilos</li>
+                <li>Peluquerías con servicios profesionales</li>
+                <li>Zapaterías con las últimas tendencias</li>
+                <li>Gimnasio en el piso superior</li>
+                <li>Supermercado interno para compras rápidas</li>
+                <li>Amplio estacionamiento propio</li>
             </ul>
+            
+            <h3>Ubicación</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1234567890123!2d-65.7890123456789!3d-28.46789012345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9424291e23456789%3A0x1234567890abcdef!2sPatio+Palmeras%2C+Valle+Viejo%2C+Catamarca!5e0!3m2!1ses!2sar!4v1234567890123" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
 
         <div class="services">
             <ul>
-                <li><i class="fas fa-tree"></i> Áreas verdes</li>
-                <li><i class="fas fa-camera"></i> Zona fotográfica</li>
-                <li><i class="fas fa-umbrella-beach"></i> Zonas de descanso</li>
+                <li><i class="fas fa-shopping-bag"></i> Comercios diversos</li>
+                <li><i class="fas fa-ice-cream"></i> Heladerías</li>
+                <li><i class="fas fa-coffee"></i> Café Havana</li>
+                <li><i class="fas fa-parking"></i> Estacionamiento propio</li>
             </ul>
         </div>
     </div>
@@ -690,9 +715,6 @@
             </div>
         </div>
 
-        <a href="https://www.google.com/maps/search/?api=1&query=Plaza+el+Aborigen,+Valle+Viejo,+Catamarca" target="_blank" class="map-btn">
-            <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
-        </a>
         <a href="#" class="info-btn" onclick="toggleInfo('info3')">Conocer más</a>
 
         <div class="info-dropdown" id="info3">
@@ -707,6 +729,11 @@
                 <li>Paseos familiares y recreativos</li>
                 <li>Fotografía del monumento y los símbolos representativos</li>
             </ul>
+            
+            <h3>Ubicación</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1234567890123!2d-65.7890123456789!3d-28.46789012345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9424291e23456789%3A0x1234567890abcdef!2sPlaza+el+Aborigen%2C+Valle+Viejo%2C+Catamarca!5e0!3m2!1ses!2sar!4v1234567890123" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
 
         <div class="services">
